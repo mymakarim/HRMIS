@@ -62,12 +62,12 @@
     </style>
 @stop
 
-@section('page_title',"PAYMENT PAGE")
+@section('page_title',"Payment Page")
 
 @section('page_header')
     <h1 class="page-title">
         <i class="voyager-wallet"></i>
-        Payment Page
+        Do Payment
     </h1>
     @include('voyager::multilingual.language-selector')
 @stop
@@ -117,35 +117,35 @@
 
                             <div class="form-group">
                                 <label for="slug">Employee Name</label>
-                                <input type="text" class="form-control" id="name" name="name"
+                                <input readonly type="text" class="form-control" id="name" name="name"
                                     placeholder="name"
                                     value="{{ $employee['name'] }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="slug">Payment Amount</label>
-                                <input type="text" class="form-control" id="payment_amount" name="payment_amount"
+                                <input readonly type="text" class="form-control" id="payment_amount" name="payment_amount"
                                     placeholder="payment Amount"
                                     value="{{ $employee['payemnt_amount'] }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="slug">Salary Month</label>
-                                <input type="text" class="form-control" id="month" name="month"
+                                <input readonly type="text" class="form-control" id="month" name="month"
                                     placeholder="Month"
                                     value="{{ $employee['month'] }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="slug">Salary Year</label>
-                                <input type="text" class="form-control" id="year" name="year"
+                                <input readonly type="text" class="form-control" id="year" name="year"
                                     placeholder="year"
                                     value="{{ $employee['year'] }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="payment_date">Payment Date</label>
-                                <input type="date" class="form-control" name="payment_date" placeholder="Payment Date">
+                                <input type="date" id="CodeNawisdatePicker" class="form-control" name="payment_date" placeholder="Payment Date">
                             </div>
 
                             <div class="form-group">
@@ -163,4 +163,7 @@
         </form>
 
     </div>
+    <script>
+    document.getElementById('CodeNawisdatePicker').valueAsDate = new Date();
+    </script>
 @stop
