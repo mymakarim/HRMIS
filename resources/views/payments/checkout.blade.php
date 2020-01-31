@@ -49,46 +49,34 @@
                                             ?>
                                             <tr>
                                             <?php
-                                            if($year == $cur_year){
-                                                    for ($i=1; $i<=$cur_month; $i++) {
-                                                        if (in_array($i . 'of' .$year, $paymentDates)){
-                                                            ?>
-                                                                <td class="text-success">
-                                                                    <?php 
-                                                                    echo $i . " / " . $year . "<br>"; 
-                                                                    ?>
-                                                                </td>
-                                                                <td><a href="" class="btn btn-success">Details</a></td>
-                                                            <?php
-                                                        }else{
-                                                            ?>
-                                                                <td><?php echo $i . " / " . $year . "<br>"; ?></td>
-                                                                <td><a href="{{ route('payments.pay', ['id' => $employee[0]->id, 'month'=> $i, 'year'=>$year]) }}" class="btn btn-primary">Pay Now</a></td>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                        </tr>
-                                                        <?php
+                                                if($year == $cur_year){
+                                                    if($counter == 1){
+                                                        $startPoint = $cur_month;
+                                                    }else{
+                                                        $startPoint = 12;
                                                     }
-                                            }else{
-                                                if($counter==1){
-                                                    $newCounter = $month;
+                                                    $endPoint = $month;
                                                 }else{
-                                                    $newCounter = 1;
+                                                    if($counter == 1){
+                                                        $startPoint = $cur_month;
+                                                    }else{
+                                                        $startPoint = 12;
+                                                    }
+                                                    $endPoint = 1;
                                                 }
-                                                for ($i=$newCounter; $i<=12; $i++) {
-                                                    if (in_array($i . 'of' .$year, $paymentDates)){
+                                                for ($i=$startPoint; $i>=$endPoint; $i--) {
+                                                    if (in_array($i . 'of' .$cur_year, $paymentDates)){
                                                         ?>
                                                             <td class="text-success">
                                                                 <?php 
-                                                                    echo $i . " / " . $year . "<br>"; 
+                                                                    echo $i . " / " . $cur_year . "<br>"; 
                                                                 ?>
                                                             </td>
                                                             <td><a href="" class="btn btn-success">Details</a></td>
                                                         <?php
                                                     }else{
                                                         ?>
-                                                            <td><?php echo $i . " / " . $year . "<br>"; ?></td>
+                                                            <td><?php echo $i . " / " . $cur_year . "<br>"; ?></td>
                                                             <td><a href="{{ route('payments.pay', ['id' => $employee[0]->id, 'month'=> $i, 'year'=>$year]) }}" class="btn btn-primary">Pay Now</a></td>
                                                         <?php
                                                     }
@@ -96,8 +84,7 @@
                                                     </tr>
                                                     <?php
                                                 }
-                                            }
-                                            $year++;
+                                            $cur_year--;
                                             $counter++;
                                         }
                                     }else{
@@ -105,29 +92,29 @@
                                             ?>
                                             <tr>
                                             <?php
-                                            if($year == $cur_year){
-                                                    for ($i=1; $i<=$cur_month; $i++) { 
-                                                        ?>
-                                                            <td><?php echo $i . " / " . $year . "<br>"; ?></td>
-                                                            <td><a href="{{ route('payments.pay', ['id' => $employee[0]->id, 'month'=> $i, 'year'=>$year]) }}" class="btn btn-primary">Pay Now</a></td>
-                                                            </tr>
-                                                        <?php
+                                                if($year == $cur_year){
+                                                    if($counter == 1){
+                                                        $startPoint = $cur_month;
+                                                    }else{
+                                                        $startPoint = 12;
                                                     }
-                                            }else{
-                                                if($counter==1){
-                                                    $newCounter = $month;
+                                                    $endPoint = $month;
                                                 }else{
-                                                    $newCounter = 1;
+                                                    if($counter == 1){
+                                                        $startPoint = $cur_month;
+                                                    }else{
+                                                        $startPoint = 12;
+                                                    }
+                                                    $endPoint = 1;
                                                 }
-                                                for ($i=$newCounter; $i<=12; $i++) {
+                                                for ($i=$startPoint; $i>=$endPoint; $i--) {
                                                     ?>
-                                                        <td><?php echo $i . " / " . $year . "<br>"; ?></td>
+                                                        <td><?php echo $i . " / " . $cur_year . "<br>"; ?></td>
                                                         <td><a href="{{ route('payments.pay', ['id' => $employee[0]->id, 'month'=> $i, 'year'=>$year]) }}" class="btn btn-primary">Pay Now</a></td>
                                                         </tr>
                                                     <?php
                                                 }
-                                            }
-                                            $year++;
+                                            $cur_year--;
                                             $counter++;
                                         }
                                     }
