@@ -158,7 +158,8 @@
                             <div class="form-group">
                                 <label for="payment_date">Payment File</label>
                                 <?php if($payment['file'] == null) { ?>
-                                <input type="file" class="custom-file-input" name="file" placeholder="Payment File">
+                                    <!-- <input type="file" name="" id=""> -->
+                                <!-- <input type="file" class="custom-file-input" name="file" placeholder="Payment File"> -->
                                 <?php }else{ ?>
                                     <br>
                                     <a href="

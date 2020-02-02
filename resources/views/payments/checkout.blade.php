@@ -72,7 +72,7 @@
                                                                     echo $i . " / " . $cur_year . "<br>"; 
                                                                 ?>
                                                             </td>
-                                                            <td><a href="" class="btn btn-success">Details</a>
+                                                            <td><a href="{{ route('payments.pay', ['id' => $payments[0]->id, 'month'=> $i, 'year'=>$cur_year]) }}" class="btn btn-success">Details</a>
                                                             </td>
                                                         <?php
                                                     }else{

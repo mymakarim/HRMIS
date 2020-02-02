@@ -19,6 +19,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::get('/payments/{id}', ['as'=> 'payments.checkout', 'uses'=> 'PaymentController@checkout'])->middleware('auth.basic');
-    Route::get('/payments/pay/{id}/{month}/{year}', ['as'=> 'payments.pay', 'uses'=> 'PaymentController@pay'])->middleware('auth.basic');
+    Route::get('/payments/{id}/{month}/{year}', ['as'=> 'payments.pay', 'uses'=> 'PaymentController@pay'])->middleware('auth.basic');
 
 });

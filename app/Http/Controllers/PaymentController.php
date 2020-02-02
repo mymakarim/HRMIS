@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use TCG\Voyager\Facades\Voyager;
 
 class PaymentController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
@@ -22,6 +23,7 @@ class PaymentController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
             ->where('absenses.year', "=", $year)
             ->where('employees.id', "=", $id)
             ->get();
+
         $payment = DB::table('payments')
             ->select(DB::raw('comment, payment_date, file, id, emp_id, month, year'))
             ->where('emp_id', "=", $id)
@@ -65,7 +67,12 @@ class PaymentController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         return view('payments.checkout')->withPayments($payments);
     }
     public function store(\Illuminate\Http\Request $request){
-        print_r($request);
+        $slug = $this->getSlug($request);
+        $file = $request->file('file');
+
+        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+        print_r($file);
+        
         die();
     }
 }
