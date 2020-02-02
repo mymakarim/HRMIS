@@ -93,7 +93,10 @@
                         <div class="panel-body">
                         <!-- yahya - use this -->
                         <textarea class="form-control richTextBox" name="comment" id="richtextComment">
-                            
+                            <?php if($payment['comment'] != null) {
+                                echo $payment['comment'];
+                            }
+                            ?>
                         </textarea>
 
                         </div>
@@ -126,7 +129,7 @@
                                 <label for="slug">Payment Amount</label>
                                 <input readonly type="text" class="form-control" id="payment_amount" name="payment_amount"
                                     placeholder="payment Amount"
-                                    value="{{ $employee['payemnt_amount'] }}">
+                                    value="{{ $employee['payment_amount'] }}">
                             </div>
 
                             <div class="form-group">
@@ -145,25 +148,44 @@
 
                             <div class="form-group">
                                 <label for="payment_date">Payment Date</label>
+                                <?php if($payment['payment_date'] == null){ ?>
                                 <input type="date" id="CodeNawisdatePicker" class="form-control" name="payment_date" placeholder="Payment Date">
+                                <?php }else{ ?>
+                                <input type="text" readonly class="form-control" id="CodeNawisdatePickerValue" value="<?php echo $payment['payment_date']; ?>">
+                                <?php } ?>
                             </div>
 
                             <div class="form-group">
                                 <label for="payment_date">Payment File</label>
+                                <?php if($payment['file'] == null) { ?>
                                 <input type="file" class="custom-file-input" name="file" placeholder="Payment File">
+                                <?php }else{ ?>
+                                    <br>
+                                    <a href="
+                                <?php 
+                                    if($payment['file'] != null) {
+                                        echo $payment['file']; 
+                                    }
+                                ?>
+                                ">
+                                <?php print_r(substr($payment['file'],19,48)); ?>
+                                </a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-
+            <?php if($payment['payment_date'] == null){ ?>
             <button type="submit" class="btn btn-primary fixedBottomButton save"><i class="voyager-file-text"></i></button>
-
+            <?php } ?>
         </form>
 
     </div>
     <script>
-    document.getElementById('CodeNawisdatePicker').valueAsDate = new Date();
+        <?php if($payment['payment_date'] == null){ ?>
+        document.getElementById('CodeNawisdatePicker').valueAsDate = new Date();
+        <?php } ?>
     </script>
 @stop

@@ -5,12 +5,12 @@
     <div class="container-fluid">
         <h1 class="page-title" style="line-height:1.3;">
             <i class="voyager-person"></i> 
-            <?php echo $employee[0]->name; ?>
+            <?php echo $payments[0]->name; ?>
             <br>
             <small>
                 <b>Registerd at: </b>
                 <?php
-                    $timestamp = $employee[0]->reg_date;
+                    $timestamp = $payments[0]->reg_date;
                     echo date("F jS, Y", strtotime($timestamp)); 
                 ?>
             </small>
@@ -38,8 +38,8 @@
                                     foreach ($payments as $payment) {
                                         array_push($paymentDates, $payment->month . 'of' . $payment->year);
                                     }
-                                    $month = (int)substr($employee[0]->reg_date, 5, 2);;
-                                    $year = (int)substr($employee[0]->reg_date, 0, 4);;
+                                    $month = (int)substr($payments[0]->reg_date, 5, 2);;
+                                    $year = (int)substr($payments[0]->reg_date, 0, 4);;
                                     $cur_month = date('m');
                                     $cur_year = date('Y');
                                     
@@ -72,12 +72,13 @@
                                                                     echo $i . " / " . $cur_year . "<br>"; 
                                                                 ?>
                                                             </td>
-                                                            <td><a href="" class="btn btn-success">Details</a></td>
+                                                            <td><a href="" class="btn btn-success">Details</a>
+                                                            </td>
                                                         <?php
                                                     }else{
                                                         ?>
                                                             <td><?php echo $i . " / " . $cur_year . "<br>"; ?></td>
-                                                            <td><a href="{{ route('payments.pay', ['id' => $employee[0]->id, 'month'=> $i, 'year'=>$year]) }}" class="btn btn-primary">Pay Now</a></td>
+                                                            <td><a href="{{ route('payments.pay', ['id' => $payments[0]->id, 'month'=> $i, 'year'=>$cur_year]) }}" class="btn btn-primary">Pay Now</a></td>
                                                         <?php
                                                     }
                                                     ?>
@@ -110,7 +111,7 @@
                                                 for ($i=$startPoint; $i>=$endPoint; $i--) {
                                                     ?>
                                                         <td><?php echo $i . " / " . $cur_year . "<br>"; ?></td>
-                                                        <td><a href="{{ route('payments.pay', ['id' => $employee[0]->id, 'month'=> $i, 'year'=>$year]) }}" class="btn btn-primary">Pay Now</a></td>
+                                                        <td><a href="{{ route('payments.pay', ['id' => $payments[0]->id, 'month'=> $i, 'year'=>$cur_year]) }}" class="btn btn-primary">Pay Now</a></td>
                                                         </tr>
                                                     <?php
                                                 }

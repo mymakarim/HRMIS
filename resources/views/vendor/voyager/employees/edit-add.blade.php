@@ -105,7 +105,7 @@
 
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                <i class="voyager-person"></i> Name
+                                Name
                             </h3>
                             <div class="panel-actions">
                                 <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
